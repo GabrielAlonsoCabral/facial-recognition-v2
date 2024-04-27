@@ -13,14 +13,14 @@ counter = 0
 
 face_match = False
 
-reference_img = cv2.imread("images/gabriel/74.jpg")
+reference_img = cv2.imread("images/laura/80.jpg")
 
 
 def check_face(frame):
     global face_match
     try:
 
-        if DeepFace.verify(frame, reference_img.copy())['verified']:
+        if DeepFace.verify(frame, reference_img.copy(), model_name='Facenet')['verified']:
             face_match = True
         else:
             face_match = False
