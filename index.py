@@ -2,7 +2,6 @@
 import tensorflow as tf
 import tensorflow_hub as hub
 
-
 # For drawing onto the image.
 from utils import display_image, download_and_resize_image, draw_boxes, draw_bounding_box_on_image
 
