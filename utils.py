@@ -107,3 +107,8 @@ def draw_boxes(image, boxes, class_names, scores, max_boxes=10, min_score=0.1):
                 display_str_list=[display_str])
             np.copyto(image, np.array(image_pil))
     return image
+
+
+GREEN = (0, 255, 0)
+RED = (0, 0, 255)
+BLUE = (255, 0, 0)
