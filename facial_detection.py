@@ -3,7 +3,7 @@ import cv2
 
 def detect_face_in_webcam():
     face_cascade = cv2.CascadeClassifier(
-        './Resources/Cascades/haarcascade_frontalface_default.xml')
+        './haarcascade_frontalface_default.xml')
 
     cap = cv2.VideoCapture(0)
 

@@ -23,13 +23,10 @@ def check_face(frame: cv2.typing.MatLike, person: PersonInfo):
 
         if result['verified']:
             person['verified'] = True
-            return True
         else:
             person['verified'] = False
-            return False
     except ValueError:
         person['verified'] = False
-        return False
 
 
 def threading_check_face(frame: cv2.typing.MatLike, person: PersonInfo):
@@ -60,8 +57,8 @@ def detect_faces(frame: cv2.typing.MatLike):
 
             print(f"is_verified: {person_info.get("verified")}, name:{
                   person_info.get("name")}")
+
             if person_info.get("verified"):
-                print("IS VERIFIED")
                 cv2.rectangle(frame, (x, y), (x+w, y+h), GREEN, 2)
                 cv2.putText(frame, person_info.get("name"), (x, y),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.8, GREEN, 1)
