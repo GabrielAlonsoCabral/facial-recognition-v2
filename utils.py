@@ -1,15 +1,25 @@
+import os
 import matplotlib.pyplot as plt
 import tempfile
+import cv2
+
 from six.moves.urllib.request import urlopen
 from six import BytesIO
 from PIL import Image
 from PIL import ImageOps
+
 
 import numpy as np
 from PIL import Image
 from PIL import ImageColor
 from PIL import ImageDraw
 from PIL import ImageFont
+from typing import List, TypedDict
+
+
+GREEN = (0, 255, 0)
+RED = (0, 0, 255)
+BLUE = (255, 0, 0)
 
 
 def display_image(image):
@@ -109,6 +119,32 @@ def draw_boxes(image, boxes, class_names, scores, max_boxes=10, min_score=0.1):
     return image
 
 
-GREEN = (0, 255, 0)
-RED = (0, 0, 255)
-BLUE = (255, 0, 0)
+class PersonInfo(TypedDict):
+    name: str
+    photo: cv2.typing.MatLike
+    verified: bool
+
+
+def get_allowed_people(folder_path: str) -> List[PersonInfo]:
+    persons_images = []
+    for person_folder in os.listdir(folder_path):
+        person_path = os.path.join(folder_path, person_folder)
+        if os.path.isdir(person_path):
+            for image_file in os.listdir(person_path):
+                if image_file.endswith('.jpg'):
+                    photo_full_path = os.path.join(person_path, image_file)
+
+                    person_info: PersonInfo = {
+                        'name': person_folder,
+                        'photo': cv2.imread(photo_full_path)
+
+                    }
+                    persons_images.append(person_info)
+                    break  # Assuming there's only one photo per person
+    return persons_images
+
+
+# Sample
+# folder_path = './images'
+# persons_images = get_persons_images(folder_path)
+# print(persons_images)

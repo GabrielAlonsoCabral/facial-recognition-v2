@@ -14,7 +14,7 @@ counter = 0
 
 face_match = False
 
-reference_img = cv2.imread("images/gabriel/80.jpg")
+reference_img = cv2.imread("images/gabriel/1.jpg")
 
 
 def check_face(frame: cv2.typing.MatLike):
